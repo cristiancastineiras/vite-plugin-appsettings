@@ -7,7 +7,6 @@
     }
   },
   "bootstrap-sha": "f11637f85df70eaf9c6605a8c0d4985d557197b5",
-  "last-release-sha": "f11637f85df70eaf9c6605a8c0d4985d557197b5",
   "include-v-in-tag": true,
   "tag-separator": "",
   "pull-request-title-pattern": "chore(release): release ${version}",
