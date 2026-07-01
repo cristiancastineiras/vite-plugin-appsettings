@@ -28,7 +28,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
 
       # Read pnpm version from package.json#packageManager. Passing
       # `version:` here would conflict with that field and abort the job.
