@@ -21,17 +21,17 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest]
+        # Node.js 20 was deprecated on GitHub-hosted runners on 2025-09-19.
+        # The plugin requires Node >= 20 (engines.node) and tests cleanly on
+        # both 22 (LTS) and 24 (current).
         node: ["22", "24"]
 
     steps:
       - name: Checkout
         uses: actions/checkout@v5
 
-      # Node.js 20 is deprecated on GitHub-hosted runners as of
-      # 2025-09-19. We pin 22 (LTS) and 24 (current) and let
-      # pnpm/action-setup read the version from package.json's
-      # `packageManager` field — passing `version:` here would
-      # conflict and break the job.
+      # Read pnpm version from package.json#packageManager. Passing
+      # `version:` here would conflict with that field and abort the job.
       - name: Install pnpm
         uses: pnpm/action-setup@v4
 
