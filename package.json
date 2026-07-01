@@ -1,7 +1,7 @@
 {
   "name": "vite-plugin-appsettings",
   "version": "2.0.0",
-  "description": "Runtime environment for Vite. Serves an appsettings.json next to your bundle (à la .NET) and honors Vite's .env convention — configure without rebuilding.",
+  "description": "Runtime environment for Vite. Serves an appsettings.json next to your bundle and honors Vite's .env convention — configure without rebuilding.",
   "keywords": [
     "vite",
     "vite-plugin",
@@ -13,7 +13,7 @@
     "kubernetes",
     "net-appsettings"
   ],
-  "license": "MIT",
+  "license": "WTFPL",
   "author": {
     "name": "Cristian Castiñeiras",
     "url": "https://github.com/cristiancastineiras"
@@ -53,10 +53,7 @@
     "typecheck": "tsc --noEmit",
     "lint": "oxlint src tests",
     "lint:fix": "oxlint --fix src tests",
-    "prepublishOnly": "pnpm run build",
-    "release": "release-it",
-    "release:ci": "release-it --ci",
-    "changelog": "auto-changelog -p"
+    "prepublishOnly": "pnpm run build"
   },
   "peerDependencies": {
     "vite": ">=4"
@@ -65,12 +62,7 @@
     "magic-string": "^0.30.11"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.5.0",
-    "@commitlint/config-conventional": "^19.5.0",
-    "@release-it/conventional-changelog": "^8.0.2",
     "@types/node": "^22.9.0",
-    "auto-changelog": "^2.5.0",
-    "husky": "^9.1.7",
     "oxlint": "^1.71.0",
     "tsdown": "^0.22.3",
     "typescript": "^5.7.2",
@@ -80,39 +72,5 @@
   "engines": {
     "node": ">=18"
   },
-  "packageManager": "pnpm@9.14.2",
-  "lint-staged": {
-    "*.{ts,tsx,js,cjs,mjs}": [
-      "oxlint --fix"
-    ]
-  },
-  "release-it": {
-    "git": {
-      "commitMessage": "chore(release): v${version}",
-      "tagName": "v${version}",
-      "tagAnnotation": "Release v${version}",
-      "push": true,
-      "requireBranch": "main"
-    },
-    "github": {
-      "release": true,
-      "releaseName": "v${version}",
-      "releaseNotes": "auto-changelog --stdout --unreleased-only"
-    },
-    "npm": {
-      "publish": true,
-      "skipChecks": false
-    },
-    "plugins": {
-      "@release-it/conventional-changelog": {
-        "preset": "conventionalcommits",
-        "infile": "CHANGELOG.md"
-      }
-    },
-    "hooks": {
-      "before:init": "pnpm run typecheck",
-      "after:bump": "pnpm run build",
-      "before:release": "pnpm run test"
-    }
-  }
+  "packageManager": "pnpm@9.14.2"
 }

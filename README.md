@@ -1,9 +1,6 @@
 # vite-plugin-appsettings
 
-[![npm](https://img.shields.io/npm/v/vite-plugin-appsettings?style=flat-square)](https://www.npmjs.com/package/vite-plugin-appsettings)
-[![License](https://img.shields.io/github/license/cristiancastineiras/vite-plugin-appsettings?style=flat-square)](LICENSE.md)
-[![CI](https://img.shields.io/github/actions/workflow/status/cristiancastineiras/vite-plugin-appsettings/ci.yaml?branch=main&style=flat-square)](https://github.com/cristiancastineiras/vite-plugin-appsettings/actions/workflows/ci.yaml)
-[![Release](https://img.shields.io/github/actions/workflow/status/cristiancastineiras/vite-plugin-appsettings/release.yaml?style=flat-square)](https://github.com/cristiancastineiras/vite-plugin-appsettings/actions/workflows/release.yaml)
+![icon](icono.ico)
 
 **Runtime environment for Vite.** Ship a single build, tweak the config
 without recompiling — same idea as `appsettings.json` in .NET, powered by
@@ -210,4 +207,4 @@ created in one go.
 
 ## License
 
-MIT
+[WTFPL](LICENSE.md) — Do What The Fuck You Want To Public License.
