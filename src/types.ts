@@ -122,6 +122,16 @@ export interface AppSettingsOptions {
    * don't need to set this.
    */
   baseDir?: string;
+
+  /**
+   * When `true`, the plugin serves the resolved `appsettings.json` over
+   * Vite's dev middleware under the same path the loader expects at
+   * runtime (i.e. `/appsettings.json` by default). This lets you point
+   * your browser at `index.html` and see the production-style runtime
+   * in dev mode too, without having to ship a static file next to the
+   * app or run a second server. Defaults to `true`.
+   */
+  serveInDev?: boolean;
 }
 
 /** Fully-resolved options after normalization. */
@@ -138,4 +148,5 @@ export interface ResolvedOptions {
   defaults: Record<string, unknown> | null;
   extraFiles: readonly string[] | null;
   baseDir: string | null;
+  serveInDev: boolean;
 }

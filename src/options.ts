@@ -30,6 +30,7 @@ export function normalizeOptions(input: AppSettingsOptions = {}): ResolvedOption
     defaults: input.defaults ? { ...input.defaults } : null,
     extraFiles: input.extraFiles ? [...input.extraFiles] : null,
     baseDir: input.baseDir ?? null,
+    serveInDev: input.serveInDev ?? true,
   };
 }
 
