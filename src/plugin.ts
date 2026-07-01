@@ -54,6 +54,38 @@ export function appsettings(options: AppSettingsOptions = {}): Plugin {
     // statically inlines `import.meta.env.VITE_*` into the bundle.
     enforce: "pre",
 
+    // Dev server: serve the resolved `appsettings.json` from a Vite
+    // middleware so the production-style runtime loader finds it
+    // during `vite dev` too. The middleware is mounted before Vite's
+    // SPA fallback so a hard reload on `/appsettings.json` works.
+    configureServer(server) {
+      if (!opts.serveInDev) return;
+      if (opts.strategy !== "json") return;
+      const url = "/" + opts.filename;
+      server.middlewares.use(url, (_req, res) => {
+        // `config` is captured by closure, but `configResolved` runs
+        // *after* `configureServer`. Read the live config off the
+        // server instead — Vite exposes it once the server is up.
+        const env = server.config?.env ?? config.env;
+        const defaults: Record<string, string> = {};
+        for (const [key, value] of Object.entries(env)) {
+          if (VITE_INTERNAL_ENVS.has(key)) continue;
+          if (typeof value !== "string") continue;
+          if (!shouldReplace(key)) continue;
+          defaults[key] = value;
+        }
+        for (const [k, v] of Object.entries(
+          defaultsToJsonStrings(extrasDefaults),
+        )) {
+          defaults[k] = v;
+        }
+        res.statusCode = 200;
+        res.setHeader("Content-Type", "application/json; charset=utf-8");
+        res.setHeader("Cache-Control", "no-store");
+        res.end(`${JSON.stringify(defaults, null, 2)}\n`);
+      });
+    },
+
     configResolved(resolved) {
       config = resolved;
       isServe = resolved.command === "serve";
