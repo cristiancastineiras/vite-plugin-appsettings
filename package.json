@@ -1,0 +1,118 @@
+{
+  "name": "vite-plugin-appsettings",
+  "version": "2.0.0",
+  "description": "Runtime environment for Vite. Serves an appsettings.json next to your bundle (à la .NET) and honors Vite's .env convention — configure without rebuilding.",
+  "keywords": [
+    "vite",
+    "vite-plugin",
+    "appsettings",
+    "runtime-env",
+    "dotenv",
+    "12-factor",
+    "docker",
+    "kubernetes",
+    "net-appsettings"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "Cristian Castiñeiras",
+    "url": "https://github.com/cristiancastineiras"
+  },
+  "type": "module",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cristiancastineiras/vite-plugin-appsettings.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cristiancastineiras/vite-plugin-appsettings/issues"
+  },
+  "homepage": "https://github.com/cristiancastineiras/vite-plugin-appsettings#readme",
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "lint": "oxlint src tests",
+    "lint:fix": "oxlint --fix src tests",
+    "prepublishOnly": "pnpm run build",
+    "release": "release-it",
+    "release:ci": "release-it --ci",
+    "changelog": "auto-changelog -p"
+  },
+  "peerDependencies": {
+    "vite": ">=4"
+  },
+  "dependencies": {
+    "magic-string": "^0.30.11"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.5.0",
+    "@commitlint/config-conventional": "^19.5.0",
+    "@release-it/conventional-changelog": "^8.0.2",
+    "@types/node": "^22.9.0",
+    "auto-changelog": "^2.5.0",
+    "husky": "^9.1.7",
+    "oxlint": "^1.71.0",
+    "tsdown": "^0.22.3",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.0",
+    "vitest": "^2.1.5"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "packageManager": "pnpm@9.14.2",
+  "lint-staged": {
+    "*.{ts,tsx,js,cjs,mjs}": [
+      "oxlint --fix"
+    ]
+  },
+  "release-it": {
+    "git": {
+      "commitMessage": "chore(release): v${version}",
+      "tagName": "v${version}",
+      "tagAnnotation": "Release v${version}",
+      "push": true,
+      "requireBranch": "main"
+    },
+    "github": {
+      "release": true,
+      "releaseName": "v${version}",
+      "releaseNotes": "auto-changelog --stdout --unreleased-only"
+    },
+    "npm": {
+      "publish": true,
+      "skipChecks": false
+    },
+    "plugins": {
+      "@release-it/conventional-changelog": {
+        "preset": "conventionalcommits",
+        "infile": "CHANGELOG.md"
+      }
+    },
+    "hooks": {
+      "before:init": "pnpm run typecheck",
+      "after:bump": "pnpm run build",
+      "before:release": "pnpm run test"
+    }
+  }
+}

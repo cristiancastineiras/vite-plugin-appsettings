@@ -1,0 +1,16 @@
+{
+  "template": ".changelog-template.hbs",
+  "unreleased": true,
+  "commitLimit": false,
+  "backfillLimit": false,
+  "tagPrefix": "v",
+  "releaseSummary": "### [{{version}}]({{compareUrl}}) ({{date}})\n\n{{body}}",
+  "issuePattern": "[#\\d]+",
+  "issueUrl": "https://github.com/cristiancastineiras/vite-plugin-appsettings/issues/ISSUE_ID",
+  "commitUrl": "https://github.com/cristiancastineiras/vite-plugin-appsettings/commit/COMMIT_HASH",
+  "compareUrl": "https://github.com/cristiancastineiras/vite-plugin-appsettings/compare/FROM...TO",
+  "userUrl": "https://github.com/USERNAME",
+  "projectUrl": "https://github.com/cristiancastineiras/vite-plugin-appsettings",
+  "groupBy": "type",
+  "sort": "version"
+}
