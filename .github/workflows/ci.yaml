@@ -33,7 +33,7 @@ jobs:
       # Read pnpm version from package.json#packageManager. Passing
       # `version:` here would conflict with that field and abort the job.
       - name: Install pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v6
 
       - name: Setup Node.js ${{ matrix.node }}
         uses: actions/setup-node@v5
