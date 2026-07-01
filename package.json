@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-appsettings",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Runtime environment for Vite. Serves an appsettings.json next to your bundle and honors Vite's .env convention — configure without rebuilding.",
   "keywords": [
     "vite",
