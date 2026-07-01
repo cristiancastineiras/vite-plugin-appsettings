@@ -49,18 +49,19 @@ jobs:
       attestations: write
     steps:
       - name: Checkout tag
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: ${{ needs.release-please.outputs.tag_name }}
           fetch-depth: 0
 
+      # Read pnpm version from package.json#packageManager.
+      # Do NOT pass `version:` — pnpm/action-setup@v4 errors out
+      # when both sources are present.
       - name: Install pnpm
         uses: pnpm/action-setup@v4
-        with:
-          version: 9
 
       - name: Setup Node.js 22
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: 22
           cache: pnpm
