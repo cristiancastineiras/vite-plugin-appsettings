@@ -3,19 +3,17 @@
   "packages": {
     ".": {
       "release-type": "node",
-      "package-name": "vite-plugin-appsettings",
-      "changelog-path": "CHANGELOG.md",
-      "include-component-in-tag": false,
-      "include-v-in-tag": true,
-      "tag-separator": "",
-      "versioning": "default",
-      "bump-minor-pre-major": true,
-      "bump-patch-for-minor-pre-major": true
+      "package-name": "vite-plugin-appsettings"
     }
   },
-  "pull-request-title-pattern": "chore(release): release ${version}",
+  "bootstrap-sha": "f11637f85df70eaf9c6605a8c0d4985d557197b5",
+  "last-release-sha": "f11637f85df70eaf9c6605a8c0d4985d557197b5",
   "include-v-in-tag": true,
   "tag-separator": "",
+  "pull-request-title-pattern": "chore(release): release ${version}",
+  "bump-minor-pre-major": true,
+  "bump-patch-for-minor-pre-major": true,
+  "changelog-path": "CHANGELOG.md",
   "changelog-sections": [
     { "type": "feat", "section": "Features" },
     { "type": "fix", "section": "Bug Fixes" },
